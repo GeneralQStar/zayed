@@ -1,0 +1,1961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Zayed Hasan Khan — Marketing & Growth Strategist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #0a0b0e;
+    --surface: #111318;
+    --surface2: #181c24;
+    --border: rgba(255,255,255,0.07);
+    --text: #e8e9eb;
+    --muted: #7a7f8e;
+    --accent: #2563eb;
+    --accent2: #f59e0b;
+    --accent-glow: rgba(37,99,235,0.15);
+    --white: #ffffff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* Noise overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(20px);
+    background: rgba(10,11,14,0.7);
+    border-bottom: 1px solid var(--border);
+    transition: padding 0.3s;
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: var(--white);
+  }
+
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+
+  .nav-links a {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-cta {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--white);
+    text-decoration: none;
+    padding: 10px 22px;
+    border: 1px solid var(--accent);
+    border-radius: 2px;
+    transition: all 0.2s;
+    background: transparent;
+  }
+
+  .nav-cta:hover { background: var(--accent); }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 140px 60px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 70% 50%, rgba(37,99,235,0.12) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 40% at 20% 80%, rgba(245,158,11,0.06) 0%, transparent 60%);
+  }
+
+  .hero-grid-lines {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent2);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 24px; height: 1px;
+    background: var(--accent2);
+  }
+
+  h1.hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 8vw, 110px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -3px;
+    color: var(--white);
+    max-width: 900px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.4s forwards;
+  }
+
+  h1.hero-name em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-desc {
+    margin-top: 36px;
+    max-width: 520px;
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.8;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.6s forwards;
+  }
+
+  .hero-actions {
+    margin-top: 48px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.8s forwards;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 14px 32px;
+    background: var(--accent);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border-radius: 2px;
+    transition: all 0.2s;
+    border: 1px solid var(--accent);
+  }
+
+  .btn-primary:hover { background: transparent; color: var(--accent); }
+
+  .btn-outline {
+    display: inline-block;
+    padding: 14px 32px;
+    background: transparent;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    border-radius: 2px;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+
+  .btn-outline:hover { border-color: var(--text); color: var(--white); }
+
+  .hero-stats {
+    margin-top: 80px;
+    display: flex;
+    gap: 60px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.9s 1s forwards;
+    border-top: 1px solid var(--border);
+    padding-top: 40px;
+  }
+
+  .stat-item { display: flex; flex-direction: column; gap: 4px; }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .stat-num span { color: var(--accent); }
+
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 120px 60px;
+    position: relative;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    margin-bottom: 72px;
+  }
+
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 2px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 54px);
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -1px;
+    line-height: 1.1;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    margin-left: auto;
+    max-width: 200px;
+    align-self: center;
+  }
+
+  /* ABOUT */
+  #about { background: var(--surface); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .about-text {
+    font-size: 17px;
+    line-height: 1.85;
+    color: var(--muted);
+  }
+
+  .about-text p + p { margin-top: 20px; }
+
+  .about-text strong { color: var(--text); font-weight: 500; }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .skill-chip {
+    padding: 10px 16px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    font-size: 12px;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.5px;
+    transition: all 0.2s;
+  }
+
+  .skill-chip:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-glow);
+  }
+
+  /* EXPERIENCE */
+  #experience { background: var(--bg); }
+
+  .exp-list { display: flex; flex-direction: column; gap: 0; }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 40px;
+    padding: 48px 0;
+    border-top: 1px solid var(--border);
+    transition: all 0.3s;
+    position: relative;
+  }
+
+  .exp-item::before {
+    content: '';
+    position: absolute;
+    left: -60px; top: 0; bottom: 0;
+    width: 2px;
+    background: transparent;
+    transition: background 0.3s;
+  }
+
+  .exp-item:hover::before { background: var(--accent); }
+
+  .exp-meta { padding-top: 4px; }
+
+  .exp-period {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent2);
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+
+  .exp-company {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  .exp-role {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  .exp-points { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+  .exp-points li {
+    font-size: 14px;
+    color: var(--muted);
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .exp-points li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 12px;
+  }
+
+  .exp-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    background: rgba(37,99,235,0.1);
+    border: 1px solid rgba(37,99,235,0.3);
+    border-radius: 2px;
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    color: var(--accent);
+    margin-top: 20px;
+  }
+
+  /* ACHIEVEMENTS */
+  #achievements { background: var(--surface); }
+
+  .ach-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+  }
+
+  .ach-card {
+    padding: 32px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    background: var(--surface2);
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ach-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: transparent;
+    transition: background 0.3s;
+  }
+
+  .ach-card:hover { border-color: rgba(37,99,235,0.3); transform: translateY(-4px); }
+  .ach-card:hover::after { background: var(--accent); }
+
+  .ach-icon {
+    font-size: 24px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .ach-rank {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--accent2);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .ach-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--white);
+    line-height: 1.4;
+  }
+
+  /* PROJECTS */
+  #projects { background: var(--bg); }
+
+  .proj-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 24px;
+  }
+
+  .proj-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 36px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .proj-card:hover {
+    border-color: rgba(37,99,235,0.3);
+    background: var(--surface2);
+  }
+
+  .proj-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .proj-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .proj-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .proj-tags {
+    margin-top: 24px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .proj-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+  }
+
+  /* BRANDS */
+  #brands { background: var(--surface); }
+
+  .brands-intro {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 48px;
+    max-width: 600px;
+  }
+
+  .brands-marquee-wrapper {
+    overflow: hidden;
+    -webkit-mask: linear-gradient(90deg, transparent, white 15%, white 85%, transparent);
+    mask: linear-gradient(90deg, transparent, white 15%, white 85%, transparent);
+  }
+
+  .brands-marquee {
+    display: flex;
+    gap: 0;
+    animation: marquee 30s linear infinite;
+    width: max-content;
+  }
+
+  .brands-marquee:hover { animation-play-state: paused; }
+
+  .brand-chip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    margin: 0 8px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    background: var(--surface2);
+    white-space: nowrap;
+    transition: all 0.2s;
+    min-width: 120px;
+  }
+
+  .brand-chip:hover { color: var(--white); border-color: var(--accent); }
+
+  .brands-row2 { margin-top: 16px; animation-delay: -15s; }
+
+  /* CONTACT */
+  #contact {
+    background: var(--bg);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 50% 100%, rgba(37,99,235,0.1) 0%, transparent 70%);
+  }
+
+  .contact-inner {
+    position: relative;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .contact-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 900;
+    color: var(--white);
+    letter-spacing: -2px;
+    line-height: 1;
+    margin-bottom: 24px;
+  }
+
+  .contact-title em { font-style: italic; color: var(--accent); }
+
+  .contact-sub {
+    font-size: 15px;
+    color: var(--muted);
+    margin-bottom: 48px;
+    line-height: 1.8;
+  }
+
+  .contact-links {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 24px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 13px;
+    transition: all 0.2s;
+  }
+
+  .contact-link:hover {
+    color: var(--white);
+    border-color: var(--accent);
+    background: var(--accent-glow);
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 32px 60px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    section { padding: 80px 24px; }
+    #hero { padding: 120px 24px 60px; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .exp-item { grid-template-columns: 1fr; gap: 0; }
+    .exp-meta { padding-bottom: 16px; }
+    .hero-stats { gap: 32px; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+
+  /* Horizontal rule accent */
+  .accent-bar {
+    display: inline-block;
+    width: 40px; height: 2px;
+    background: var(--accent);
+    vertical-align: middle;
+    margin-right: 12px;
+  }
+
+  /* TICKER BANNER */
+  .ticker-banner {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0;
+    opacity: 0.04;
+  }
+  .ticker-row {
+    display: flex;
+    width: max-content;
+    animation: tickerScroll 40s linear infinite;
+    white-space: nowrap;
+  }
+  .ticker-row:nth-child(2) { animation-direction: reverse; animation-duration: 55s; }
+  .ticker-row:nth-child(3) { animation-duration: 48s; }
+  @keyframes tickerScroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .ticker-word {
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    font-weight: 900;
+    color: var(--white);
+    letter-spacing: -2px;
+    padding: 4px 28px;
+    line-height: 1.05;
+    text-transform: uppercase;
+    user-select: none;
+  }
+  .ticker-word.outlined {
+    -webkit-text-stroke: 1.5px rgba(255,255,255,0.8);
+    color: transparent;
+  }
+
+  /* PRESS SECTION */
+  #press { background: var(--surface); }
+  .press-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 20px;
+  }
+  .press-card {
+    display: flex;
+    flex-direction: column;
+    padding: 32px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    background: var(--surface2);
+    text-decoration: none;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .press-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--accent-glow) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  .press-card:hover { border-color: rgba(37,99,235,0.4); transform: translateY(-4px); }
+  .press-card:hover::before { opacity: 1; }
+  .press-outlet {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .press-outlet-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent2);
+  }
+  .press-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+  .press-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--white);
+    line-height: 1.45;
+    margin-bottom: 12px;
+    flex: 1;
+    transition: color 0.2s;
+  }
+  .press-card:hover .press-title { color: var(--accent); }
+  .press-excerpt {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 20px;
+  }
+  .press-read {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-top: auto;
+  }
+  .press-arrow { transition: transform 0.2s; display: inline-block; }
+  .press-card:hover .press-arrow { transform: translateX(5px); }
+
+  /* SECTION PHOTOS */
+  .exp-content-wrap {
+    display: grid;
+    grid-template-columns: 1fr 140px;
+    gap: 28px;
+    align-items: start;
+  }
+
+  .exp-section-photo {
+    width: 140px;
+    height: 140px;
+    border-radius: 2px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    flex-shrink: 0;
+    background: var(--surface2);
+    position: relative;
+    margin-top: 4px;
+  }
+
+  .exp-section-photo img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.4s;
+  }
+
+  .exp-section-photo:hover img { transform: scale(1.08); }
+
+  .exp-photo-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: rgba(255,255,255,0.1);
+    letter-spacing: 1px;
+    text-align: center;
+    padding: 8px;
+    line-height: 1.6;
+  }
+
+  .ach-photo {
+    width: 100%;
+    height: 120px;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    position: relative;
+  }
+
+  .ach-photo img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    transition: transform 0.4s;
+  }
+
+  .ach-card:hover .ach-photo img { transform: scale(1.06); }
+
+  .ach-photo-placeholder {
+    display: flex; align-items: center; justify-content: center;
+    height: 100%;
+    font-size: 22px;
+  }
+
+  @media (max-width: 768px) {
+    .exp-content-wrap { grid-template-columns: 1fr; }
+    .exp-section-photo { width: 100%; height: 180px; }
+  }
+
+  /* HERO PHOTO */
+  .hero-inner {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .hero-photo-wrap {
+    position: relative;
+    flex-shrink: 0;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.5s forwards;
+  }
+
+  .hero-photo-frame {
+    width: 280px;
+    height: 360px;
+    border-radius: 2px;
+    overflow: hidden;
+    border: 1px solid rgba(37,99,235,0.35);
+    box-shadow: 0 0 80px rgba(37,99,235,0.12), 0 0 0 1px rgba(255,255,255,0.04);
+    position: relative;
+    background: var(--surface2);
+  }
+
+  .hero-photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .hero-photo-frame:hover img { transform: scale(1.04); }
+
+  /* decorative offset border */
+  .hero-photo-wrap::after {
+    content: '';
+    position: absolute;
+    bottom: -14px; right: -14px;
+    width: 100%; height: 100%;
+    border: 1px solid rgba(245,158,11,0.2);
+    border-radius: 2px;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  /* accent dot grid */
+  .hero-photo-wrap::before {
+    content: '';
+    position: absolute;
+    top: -20px; left: -20px;
+    width: 80px; height: 80px;
+    background-image: radial-gradient(circle, rgba(37,99,235,0.4) 1px, transparent 1px);
+    background-size: 10px 10px;
+    z-index: -1;
+  }
+
+  /* GALLERY */
+  #gallery { background: var(--surface); }
+
+  .gallery-filters {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+
+  .gallery-filter-btn {
+    padding: 8px 18px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    background: transparent;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .gallery-filter-btn:hover,
+  .gallery-filter-btn.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-glow);
+  }
+
+  .gallery-grid {
+    columns: 3;
+    column-gap: 14px;
+  }
+
+  .gallery-item {
+    break-inside: avoid;
+    margin-bottom: 14px;
+    position: relative;
+    border-radius: 2px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    background: var(--surface2);
+  }
+
+  .gallery-item img {
+    width: 100%;
+    display: block;
+    transition: transform 0.45s ease;
+  }
+
+  .gallery-item:hover img { transform: scale(1.06); }
+
+  .gallery-item-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
+  }
+
+  .gallery-item:hover .gallery-item-overlay { opacity: 1; }
+
+  .gallery-item-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: rgba(255,255,255,0.8);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  /* LIGHTBOX */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    background: rgba(0,0,0,0.95);
+    backdrop-filter: blur(10px);
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+  }
+
+  .lightbox.open { display: flex; }
+
+  .lightbox-img {
+    max-width: 90vw;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 2px;
+    border: 1px solid rgba(255,255,255,0.08);
+    animation: fadeUp 0.3s ease;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 24px; right: 32px;
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 24px;
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+
+  .lightbox-close:hover { color: var(--white); border-color: var(--white); }
+
+  .lightbox-caption {
+    position: absolute;
+    bottom: 32px; left: 50%;
+    transform: translateX(-50%);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+    font-size: 18px;
+  }
+
+  .lightbox-nav:hover { color: var(--white); border-color: var(--white); }
+  .lightbox-prev { left: 32px; }
+  .lightbox-next { right: 32px; }
+
+  @media (max-width: 768px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-photo-wrap { display: none; }
+    .gallery-grid { columns: 2; }
+  }
+
+  @media (max-width: 480px) {
+    .gallery-grid { columns: 1; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo" style="font-family:'Playfair Display',serif; font-size:18px; font-weight:700; letter-spacing:1px; color:var(--white);">Zayed <span style="color:var(--accent); font-style:italic;">Khan</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#achievements">Awards</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#brands">Brands</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#press">Press</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:zayedkh152@gmail.com" class="nav-cta">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-lines"></div>
+
+  <!-- ANIMATED TICKER BACKGROUND -->
+  <div class="ticker-banner" aria-hidden="true">
+    <div class="ticker-row">
+      <span class="ticker-word">Marketing</span><span class="ticker-word outlined">Growth</span><span class="ticker-word">Branding</span><span class="ticker-word outlined">Strategy</span><span class="ticker-word">Banglalink</span><span class="ticker-word outlined">Kabbik</span><span class="ticker-word">Campaigns</span><span class="ticker-word outlined">Influencer</span>
+      <span class="ticker-word">Marketing</span><span class="ticker-word outlined">Growth</span><span class="ticker-word">Branding</span><span class="ticker-word outlined">Strategy</span><span class="ticker-word">Banglalink</span><span class="ticker-word outlined">Kabbik</span><span class="ticker-word">Campaigns</span><span class="ticker-word outlined">Influencer</span>
+    </div>
+    <div class="ticker-row">
+      <span class="ticker-word outlined">Army IBA</span><span class="ticker-word">VEON</span><span class="ticker-word outlined">Partnerships</span><span class="ticker-word">Digital</span><span class="ticker-word outlined">HSBC</span><span class="ticker-word">PRAN</span><span class="ticker-word outlined">Leadership</span><span class="ticker-word">Analytics</span>
+      <span class="ticker-word outlined">Army IBA</span><span class="ticker-word">VEON</span><span class="ticker-word outlined">Partnerships</span><span class="ticker-word">Digital</span><span class="ticker-word outlined">HSBC</span><span class="ticker-word">PRAN</span><span class="ticker-word outlined">Leadership</span><span class="ticker-word">Analytics</span>
+    </div>
+    <div class="ticker-row">
+      <span class="ticker-word">120K+</span><span class="ticker-word outlined">Reach</span><span class="ticker-word">MyBL</span><span class="ticker-word outlined">GTM</span><span class="ticker-word">Rotary</span><span class="ticker-word outlined">NextHype</span><span class="ticker-word">Content</span><span class="ticker-word outlined">Execution</span>
+      <span class="ticker-word">120K+</span><span class="ticker-word outlined">Reach</span><span class="ticker-word">MyBL</span><span class="ticker-word outlined">GTM</span><span class="ticker-word">Rotary</span><span class="ticker-word outlined">NextHype</span><span class="ticker-word">Content</span><span class="ticker-word outlined">Execution</span>
+    </div>
+  </div>
+
+  <div class="hero-inner">
+    <!-- LEFT: Text content -->
+    <div>
+      <div class="hero-tag">Growth · AI Products · B2B Sales · Digital Strategy — Dhaka, BD</div>
+      <h1 class="hero-name">Zayed<br/><em>Hasan</em><br/>Khan</h1>
+      <p class="hero-desc">
+        Sales-focused growth professional leading end-to-end B2B commercial strategy for AI products. Embedded at Banglalink (VEON) via a flagship program selected from 3,000+ applicants. National finalist and champion across four business competitions. Ready to own a pipeline from day one.
+      </p>
+      <div class="hero-actions">
+        <a href="#experience" class="btn-primary">View My Work</a>
+        <a href="mailto:zayedkh152@gmail.com" class="btn-outline">Let's Connect</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-num">120<span>K+</span></span>
+          <span class="stat-label">Campaign Reach</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">30<span>+</span></span>
+          <span class="stat-label">Growth Campaigns</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">15<span>+</span></span>
+          <span class="stat-label">Client Accounts</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">3<span>K+</span></span>
+          <span class="stat-label">Applicants Beaten</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">7<span>+</span></span>
+          <span class="stat-label">Competition Awards</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Profile photo — replace images/profile.jpg with your headshot -->
+    <div class="hero-photo-wrap">
+      <div class="hero-photo-frame">
+        <img src="images/profile.jpg" alt="Zayed Hasan Khan"
+          onerror="this.parentElement.style.background='var(--surface2)'; this.style.display='none'; this.parentElement.innerHTML='<div style=\'display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:12px;\'><svg width=\'48\' height=\'48\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'rgba(37,99,235,0.4)\' stroke-width=\'1\'><circle cx=\'12\' cy=\'8\' r=\'4\'/><path d=\'M4 20c0-4 3.6-7 8-7s8 3 8 7\'/></svg><p style=\'font-family:DM Mono,monospace;font-size:10px;color:rgba(255,255,255,0.2);letter-spacing:1px;text-align:center;padding:0 20px;\'>ADD images/profile.jpg</p></div>'"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header reveal">
+    <span class="section-num">01</span>
+    <h2 class="section-title">About</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>
+        I'm a fresh BBA graduate from <strong>Army IBA</strong> with a major in Marketing, currently interning at <strong>Banglalink Digital Communications (VEON)</strong> — one of Bangladesh's Big 4 telcos — where I was selected as <strong>1 of 21 interns from 3,000+ applicants</strong>.
+      </p>
+      <p>
+        Beyond my internship, I serve as <strong>Growth & Brand Partnership Lead at Kabbik</strong>, a premium audiobook platform, and previously led business development at NextHype, a digital marketing agency.
+      </p>
+      <p>
+        I bring a rare blend of <strong>strategic thinking, brand acumen, and execution muscle</strong> — from influencer networks and campaign analytics to business case competitions and international exchange programs with Rotary International.
+      </p>
+      <p style="margin-top:28px;">
+        <span class="accent-bar"></span>
+        <span style="font-family:'DM Mono',monospace; font-size:12px; color:var(--accent);">CGPA 3.31 / 4.00 · BBA Marketing · Army IBA</span>
+      </p>
+    </div>
+    <div class="reveal">
+      <div class="skills-grid">
+        <div class="skill-chip">Influencer Marketing</div>
+        <div class="skill-chip">Growth Strategy</div>
+        <div class="skill-chip">Brand Partnerships</div>
+        <div class="skill-chip">Campaign Analytics</div>
+        <div class="skill-chip">Content Strategy</div>
+        <div class="skill-chip">Business Development</div>
+        <div class="skill-chip">Market Research</div>
+        <div class="skill-chip">Performance Dashboards</div>
+        <div class="skill-chip">GTM Strategy</div>
+        <div class="skill-chip">Digital Advertising</div>
+        <div class="skill-chip">Telco Super Apps</div>
+        <div class="skill-chip">Public Speaking</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header reveal">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Experience</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="exp-list">
+
+    <!-- SYSTECH / BuildMyInvite -->
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <div class="exp-period">Jan 2026 — Present</div>
+        <div class="exp-company">Systech Computers Ltd.</div>
+      </div>
+      <div class="exp-content-wrap">
+        <div>
+          <div class="exp-role">Head of Growth<br/>AI Products · BuildMyInvite</div>
+          <ul class="exp-points">
+            <li>Owns end-to-end B2B sales strategy for BuildMyInvite — Bangladesh's first AI-powered personalized video invitation platform targeting hospitality and events.</li>
+            <li>Independently builds and manages prospect pipeline across hotel groups, corporate event organizers, and banquet venues — full cycle from prospecting through demo, and proposal to close.</li>
+            <li>Engineered a cost-disruption pricing narrative: BDT 30/guest vs. market alternatives at BDT 500+/video — a 15x cost advantage used as anchor in all enterprise sales conversations.</li>
+            <li>Delivers pitch decks and commercial proposals to C-suite stakeholders including hotel GMs, CMOs, and marketing directors.</li>
+            <li>Collaborates with Banglalink's Lead AI Engineer on product development, bridging technical capability with market-facing commercial strategy.</li>
+            <li>Leads investment raising conversations and brand partnership outreach as part of the commercial leadership team.</li>
+          </ul>
+          <span class="exp-badge">B2B Sales · AI Products · 15x Cost Advantage Narrative</span>
+        </div>
+        <!-- Photo: save as images/exp-systech.jpg — a photo of you pitching, at a demo, or at Systech -->
+        <div class="exp-section-photo">
+          <img src="images/exp-systech.jpg" alt="Systech BuildMyInvite"
+            onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'exp-photo-placeholder\'>exp-systech<br/>.jpg</div>'"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- BANGLALINK -->
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <div class="exp-period">Feb 2025 — Present</div>
+        <div class="exp-company">Banglalink (VEON)</div>
+      </div>
+      <div class="exp-content-wrap">
+        <div>
+          <div class="exp-role">Digitalyst Intern<br/>Digital Growth · MyBL</div>
+          <ul class="exp-points">
+            <li>Selected as 1 of 21 interns from 3,000+ applicants for Bangladesh's most competitive telco internship program.</li>
+            <li>Collaborated with AI engineering leadership on digital product strategy, gaining direct exposure to AI-driven user growth and platform architecture decisions.</li>
+            <li>Conducted competitor intelligence analysis on telco super apps across the region — findings directly contributed to MyBL App Revamp 3.0, targeting a 40% CTR improvement.</li>
+            <li>Supported multi-channel campaign execution within the MyBL ecosystem, tracking performance metrics and surfacing optimization recommendations to the digital growth team.</li>
+          </ul>
+          <span class="exp-badge">Flagship Internship · Top 0.7% Selection Rate</span>
+        </div>
+        <!-- Photo: save as images/exp-banglalink.jpg — a photo of you at Banglalink office, event, or with the team -->
+        <div class="exp-section-photo">
+          <img src="images/exp-banglalink.jpg" alt="Banglalink"
+            onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'exp-photo-placeholder\'>exp-banglalink<br/>.jpg</div>'"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- KABBIK -->
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <div class="exp-period">Aug 2024 — Dec 2025</div>
+        <div class="exp-company">Kabbik Audiobooks</div>
+      </div>
+      <div class="exp-content-wrap">
+        <div>
+          <div class="exp-role">Growth Lead &amp;<br/>Brand Partnership Lead</div>
+          <ul class="exp-points">
+            <li>Drove subscription revenue growth through 30+ performance campaigns achieving 120K+ combined reach across platforms.</li>
+            <li>Managed and coached a 13-person influencer and partner network, setting individual sales KPIs and optimizing conversion tactics per channel.</li>
+            <li>Introduced ElevenLabs AI recording pipeline for English audiobooks, cutting production costs while building CAC, CTR, and engagement dashboards to optimize ROI.</li>
+            <li>Currently supporting investment raising conversations — preparing materials and participating in investor-facing meetings as a consultant.</li>
+          </ul>
+          <span class="exp-badge">13 Influencers · 120K+ Reach · AI Pipeline</span>
+        </div>
+        <!-- Photo: save as images/exp-kabbik.jpg — a photo of you at a Kabbik event or campaign shoot -->
+        <div class="exp-section-photo">
+          <img src="images/exp-kabbik.jpg" alt="Kabbik"
+            onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'exp-photo-placeholder\'>exp-kabbik<br/>.jpg</div>'"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- NEXTHYPE -->
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <div class="exp-period">May 2024 — Sep 2024</div>
+        <div class="exp-company">NextHype Agency</div>
+      </div>
+      <div class="exp-content-wrap">
+        <div>
+          <div class="exp-role">Consultant<br/>Business Development</div>
+          <ul class="exp-points">
+            <li>Built agency client base from scratch via outbound prospecting — closed 15+ accounts through consultative pitching and tailored commercial proposals with zero senior handholding.</li>
+            <li>Managed complete client sales cycle: outreach → qualification → pitch → proposal → onboarding.</li>
+            <li>Coordinated delivery of 20+ digital and influencer campaigns across creative and media teams, maintaining client satisfaction and generating repeat business.</li>
+          </ul>
+          <span class="exp-badge">15+ Clients · 20+ Campaigns Delivered</span>
+        </div>
+        <!-- Photo: save as images/exp-nexthype.jpg — a photo from your NextHype agency days -->
+        <div class="exp-section-photo">
+          <img src="images/exp-nexthype.jpg" alt="NextHype"
+            onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'exp-photo-placeholder\'>exp-nexthype<br/>.jpg</div>'"
+          />
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="section-header reveal">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Awards &amp; Leadership</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="ach-grid">
+
+    <!-- Photo: images/ach-hsbc-champion.jpg — your photo from the HSBC Campus Round win -->
+    <div class="ach-card reveal">
+      <div class="ach-photo">
+        <img src="images/ach-hsbc-champion.jpg" alt="HSBC Champion"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'ach-photo-placeholder\'>🏆</div>'"
+        />
+      </div>
+      <div class="ach-rank">Champion</div>
+      <div class="ach-title">HSBC Business Case Competition — Campus Round 2025</div>
+    </div>
+
+    <!-- Photo: images/ach-pran.jpg — your photo from PRAN-RFL Brandstorm -->
+    <div class="ach-card reveal">
+      <div class="ach-photo">
+        <img src="images/ach-pran.jpg" alt="PRAN-RFL Brandstorm"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'ach-photo-placeholder\'>🥈</div>'"
+        />
+      </div>
+      <div class="ach-rank">1st Runner-Up</div>
+      <div class="ach-title">PRAN-RFL Brandstorm — National Branding Competition 2024</div>
+    </div>
+
+    <!-- Photo: images/ach-hsbc-national.jpg — your photo from HSBC 2026 national round -->
+    <div class="ach-card reveal">
+      <div class="ach-photo">
+        <img src="images/ach-hsbc-national.jpg" alt="HSBC National"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'ach-photo-placeholder\'>🎯</div>'"
+        />
+      </div>
+      <div class="ach-rank">National Round Semi-Finalist</div>
+      <div class="ach-title">HSBC Business Case Competition 2026</div>
+    </div>
+
+    <!-- Photo: images/ach-hsbc-top15.jpg — your photo from HSBC 2025 top 15 -->
+    <div class="ach-card reveal">
+      <div class="ach-photo">
+        <img src="images/ach-hsbc-top15.jpg" alt="HSBC Top 15"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'ach-photo-placeholder\'>⭐</div>'"
+        />
+      </div>
+      <div class="ach-rank">Top 15 Finalist</div>
+      <div class="ach-title">HSBC Business Case Competition 2025</div>
+    </div>
+
+    <!-- Photo: images/ach-hult.jpg — your photo from Hult Prize win at Army IBA -->
+    <div class="ach-card reveal">
+      <div class="ach-photo">
+        <img src="images/ach-hult.jpg" alt="Hult Prize"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'ach-photo-placeholder\'>🏆</div>'"
+        />
+      </div>
+      <div class="ach-rank">Champion</div>
+      <div class="ach-title">Hult Prize "Speak for Society" — Army IBA Chapter 2024</div>
+    </div>
+
+    <!-- Photo: images/ach-sparktank.jpg — your photo from Dhaka Bank SparkTank -->
+    <div class="ach-card reveal">
+      <div class="ach-photo">
+        <img src="images/ach-sparktank.jpg" alt="SparkTank"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'ach-photo-placeholder\'>🥈</div>'"
+        />
+      </div>
+      <div class="ach-rank">1st Runner-Up</div>
+      <div class="ach-title">Dhaka Bank SparkTank'24 — National Competition</div>
+    </div>
+
+    <!-- Photo: images/ach-club-president.jpg — your photo as Club President at an event -->
+    <div class="ach-card reveal">
+      <div class="ach-photo">
+        <img src="images/ach-club-president.jpg" alt="Club President"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'ach-photo-placeholder\'>🌏</div>'"
+        />
+      </div>
+      <div class="ach-rank">President · Nov 2024 – Nov 2025</div>
+      <div class="ach-title">Army IBA Business &amp; Leadership Club — 1,000+ participant events, 87% engagement growth</div>
+    </div>
+
+    <!-- Photo: images/ach-rotary.jpg — your photo from the Rotary Malaysia exchange -->
+    <div class="ach-card reveal">
+      <div class="ach-photo">
+        <img src="images/ach-rotary.jpg" alt="Rotary Malaysia"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'ach-photo-placeholder\'>✈️</div>'"
+        />
+      </div>
+      <div class="ach-rank">Cultural Ambassador</div>
+      <div class="ach-title">Rotary Youth Exchange Representative — Malaysia (Representing Bangladesh)</div>
+    </div>
+
+    <!-- Photo: images/ach-campus-ambassador.jpg — your photo from Banglalink Campus Ambassador days / Ennovators 7.0 -->
+    <div class="ach-card reveal">
+      <div class="ach-photo">
+        <img src="images/ach-campus-ambassador.jpg" alt="Campus Ambassador"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'ach-photo-placeholder\'>📣</div>'"
+        />
+      </div>
+      <div class="ach-rank">Campus Ambassador · Oct 2023 – Oct 2024</div>
+      <div class="ach-title">Banglalink Digital Communications Ltd. — Led Ennovators 7.0 campus event with 200+ students</div>
+    </div>
+
+    <!-- Photo: images/ach-hult-runnerup.jpg — your photo from Hult Prize Runner-Up 2023 -->
+    <div class="ach-card reveal">
+      <div class="ach-photo">
+        <img src="images/ach-hult-runnerup.jpg" alt="Hult Runner Up"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'ach-photo-placeholder\'>🥈</div>'"
+        />
+      </div>
+      <div class="ach-rank">1st Runner-Up</div>
+      <div class="ach-title">Hult Prize Campus Round 2023 — Army IBA</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header reveal">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Projects</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="proj-grid">
+    <div class="proj-card reveal">
+      <div class="proj-num">PROJECT / 01</div>
+      <div class="proj-title">MyBL App Revamp 3.0</div>
+      <div class="proj-desc">
+        Contributed to Banglalink's major app revamp initiative. Led competitive analysis of telecom super apps, identified engagement tactics and campaign mechanics, and supported promotional planning targeting a 40% CTR improvement.
+      </div>
+      <div class="proj-tags">
+        <span class="proj-tag">Telco Super App</span>
+        <span class="proj-tag">Competitive Analysis</span>
+        <span class="proj-tag">User Engagement</span>
+        <span class="proj-tag">CTR Optimization</span>
+      </div>
+    </div>
+    <div class="proj-card reveal">
+      <div class="proj-num">PROJECT / 02</div>
+      <div class="proj-title">Kabbik Nepal Market Campaign</div>
+      <div class="proj-desc">
+        Executed 30+ influencer-led campaigns driving 120K+ reach and measurable engagement growth for Kabbik's Nepal expansion. Coordinated with content, design, and media teams to ensure timely delivery and brand alignment.
+      </div>
+      <div class="proj-tags">
+        <span class="proj-tag">Market Expansion</span>
+        <span class="proj-tag">Influencer Marketing</span>
+        <span class="proj-tag">Cross-functional</span>
+        <span class="proj-tag">Nepal</span>
+      </div>
+    </div>
+    <div class="proj-card reveal">
+      <div class="proj-num">PROJECT / 03</div>
+      <div class="proj-title">Tiffin Biology Book — GTM &amp; Market Development</div>
+      <div class="proj-desc">
+        Led product launch achieving 1,000+ sales in the first month via multi-channel distribution. Developed a 35,000+ lead pipeline system with SMS, WhatsApp, and telesales optimization. Introduced AI-driven marketing campaigns to improve conversion efficiency.
+      </div>
+      <div class="proj-tags">
+        <span class="proj-tag">GTM Strategy</span>
+        <span class="proj-tag">Lead Pipeline</span>
+        <span class="proj-tag">AI Marketing</span>
+        <span class="proj-tag">1K+ Sales</span>
+      </div>
+    </div>
+    <div class="proj-card reveal">
+      <div class="proj-num">PROJECT / 04</div>
+      <div class="proj-title">PRAN-RFL Marketiniac 3.0</div>
+      <div class="proj-desc">
+        Organized Bangladesh's premier marketing business case competition as Club President, managing PR, communications, and promotional strategy to deliver a flagship event at the national level.
+      </div>
+      <div class="proj-tags">
+        <span class="proj-tag">Event Management</span>
+        <span class="proj-tag">PR Strategy</span>
+        <span class="proj-tag">National Competition</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<section id="brands">
+  <div class="section-header reveal">
+    <span class="section-num">05</span>
+    <h2 class="section-title">Brand Portfolio</h2>
+    <div class="section-line"></div>
+  </div>
+  <p class="brands-intro reveal">
+    A selection of brands I have worked with through personal network, club partnerships, and agency engagements.
+  </p>
+
+  <div class="brands-marquee-wrapper">
+    <div class="brands-marquee">
+      <div class="brand-chip">Unilever</div>
+      <div class="brand-chip">BAT Bangladesh</div>
+      <div class="brand-chip">bKash</div>
+      <div class="brand-chip">Daraz</div>
+      <div class="brand-chip">Nescafé</div>
+      <div class="brand-chip">HSBC</div>
+      <div class="brand-chip">Banglalink</div>
+      <div class="brand-chip">Grameenphone</div>
+      <div class="brand-chip">PRAN</div>
+      <div class="brand-chip">Dabur</div>
+      <div class="brand-chip">Levi's</div>
+      <div class="brand-chip">Marico</div>
+      <div class="brand-chip">Unilever</div>
+      <div class="brand-chip">BAT Bangladesh</div>
+      <div class="brand-chip">bKash</div>
+      <div class="brand-chip">Daraz</div>
+      <div class="brand-chip">Nescafé</div>
+      <div class="brand-chip">HSBC</div>
+      <div class="brand-chip">Banglalink</div>
+      <div class="brand-chip">Grameenphone</div>
+      <div class="brand-chip">PRAN</div>
+      <div class="brand-chip">Dabur</div>
+      <div class="brand-chip">Levi's</div>
+      <div class="brand-chip">Marico</div>
+    </div>
+  </div>
+
+  <div class="brands-marquee-wrapper" style="margin-top:16px;">
+    <div class="brands-marquee brands-row2">
+      <div class="brand-chip">The Daily Star</div>
+      <div class="brand-chip">Bongo</div>
+      <div class="brand-chip">Studio X</div>
+      <div class="brand-chip">BYLC</div>
+      <div class="brand-chip">JTI</div>
+      <div class="brand-chip">Dan Cake</div>
+      <div class="brand-chip">Drinko</div>
+      <div class="brand-chip">Fanfare</div>
+      <div class="brand-chip">Sheba Platform</div>
+      <div class="brand-chip">WebAble</div>
+      <div class="brand-chip">PriyoShop</div>
+      <div class="brand-chip">a2i</div>
+      <div class="brand-chip">The Daily Star</div>
+      <div class="brand-chip">Bongo</div>
+      <div class="brand-chip">Studio X</div>
+      <div class="brand-chip">BYLC</div>
+      <div class="brand-chip">JTI</div>
+      <div class="brand-chip">Dan Cake</div>
+      <div class="brand-chip">Drinko</div>
+      <div class="brand-chip">Fanfare</div>
+      <div class="brand-chip">Sheba Platform</div>
+      <div class="brand-chip">WebAble</div>
+      <div class="brand-chip">PriyoShop</div>
+      <div class="brand-chip">a2i</div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="section-header reveal">
+    <span class="section-num">06</span>
+    <h2 class="section-title">In the Field</h2>
+    <div class="section-line"></div>
+  </div>
+  <p style="color:var(--muted); font-size:14px; margin-bottom:40px; max-width:600px; line-height:1.8;">
+    Campaign events, brand activations, competition moments, and collaborations — a visual archive of the journey.
+  </p>
+
+  <!-- Filter buttons -->
+  <div class="gallery-filters reveal">
+    <button class="gallery-filter-btn active" data-filter="all">All</button>
+    <button class="gallery-filter-btn" data-filter="banglalink">Banglalink</button>
+    <button class="gallery-filter-btn" data-filter="campaigns">Campaigns</button>
+    <button class="gallery-filter-btn" data-filter="competitions">Competitions</button>
+    <button class="gallery-filter-btn" data-filter="influencers">Influencers</button>
+  </div>
+
+  <!--
+    HOW TO ADD YOUR PHOTOS:
+    1. Create an "images/gallery/" folder next to your index.html
+    2. Add your photos there (compress to <200KB each at squoosh.app)
+    3. Replace the src="images/gallery/photo-X.jpg" paths below
+    4. Update data-category to: banglalink | campaigns | competitions | influencers
+    5. Update data-caption to a short label (shown on hover + lightbox)
+    6. Duplicate the .gallery-item block to add more photos
+  -->
+
+  <div class="gallery-grid reveal">
+
+    <!-- Photo 1 -->
+    <div class="gallery-item" data-category="banglalink" data-caption="Banglalink · Digitalyst Intern 2025" data-src="images/gallery/photo-1.jpg">
+      <img src="images/gallery/photo-1.jpg" alt="Banglalink Event"
+        onerror="this.parentElement.style.minHeight='200px'; this.style.display='none'; this.parentElement.innerHTML+='<div style=\'display:flex;align-items:center;justify-content:center;height:200px;font-family:DM Mono,monospace;font-size:10px;color:rgba(255,255,255,0.15);letter-spacing:1px;\'>photo-1.jpg</div>'"
+      />
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Banglalink · 2025</span></div>
+    </div>
+
+    <!-- Photo 2 -->
+    <div class="gallery-item" data-category="banglalink" data-caption="Banglalink · Campaign Event" data-src="images/gallery/photo-2.jpg">
+      <img src="images/gallery/photo-2.jpg" alt="Banglalink Campaign"
+        onerror="this.parentElement.style.minHeight='260px'; this.style.display='none'; this.parentElement.innerHTML+='<div style=\'display:flex;align-items:center;justify-content:center;height:260px;font-family:DM Mono,monospace;font-size:10px;color:rgba(255,255,255,0.15);letter-spacing:1px;\'>photo-2.jpg</div>'"
+      />
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Banglalink · Campaign</span></div>
+    </div>
+
+    <!-- Photo 3 -->
+    <div class="gallery-item" data-category="competitions" data-caption="PRAN-RFL · Marketiniac 3.0" data-src="images/gallery/photo-3.jpg">
+      <img src="images/gallery/photo-3.jpg" alt="PRAN-RFL Competition"
+        onerror="this.parentElement.style.minHeight='180px'; this.style.display='none'; this.parentElement.innerHTML+='<div style=\'display:flex;align-items:center;justify-content:center;height:180px;font-family:DM Mono,monospace;font-size:10px;color:rgba(255,255,255,0.15);letter-spacing:1px;\'>photo-3.jpg</div>'"
+      />
+      <div class="gallery-item-overlay"><span class="gallery-item-label">PRAN-RFL · Marketiniac 3.0</span></div>
+    </div>
+
+    <!-- Photo 4 -->
+    <div class="gallery-item" data-category="influencers" data-caption="Influencer Network · Campaign Shoot" data-src="images/gallery/photo-4.jpg">
+      <img src="images/gallery/photo-4.jpg" alt="Influencer"
+        onerror="this.parentElement.style.minHeight='240px'; this.style.display='none'; this.parentElement.innerHTML+='<div style=\'display:flex;align-items:center;justify-content:center;height:240px;font-family:DM Mono,monospace;font-size:10px;color:rgba(255,255,255,0.15);letter-spacing:1px;\'>photo-4.jpg</div>'"
+      />
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Influencer Network</span></div>
+    </div>
+
+    <!-- Photo 5 -->
+    <div class="gallery-item" data-category="competitions" data-caption="HSBC Business Case Competition" data-src="images/gallery/photo-5.jpg">
+      <img src="images/gallery/photo-5.jpg" alt="HSBC Competition"
+        onerror="this.parentElement.style.minHeight='200px'; this.style.display='none'; this.parentElement.innerHTML+='<div style=\'display:flex;align-items:center;justify-content:center;height:200px;font-family:DM Mono,monospace;font-size:10px;color:rgba(255,255,255,0.15);letter-spacing:1px;\'>photo-5.jpg</div>'"
+      />
+      <div class="gallery-item-overlay"><span class="gallery-item-label">HSBC BCC · 2026</span></div>
+    </div>
+
+    <!-- Photo 6 -->
+    <div class="gallery-item" data-category="campaigns" data-caption="Kabbik · Nepal Campaign" data-src="images/gallery/photo-6.jpg">
+      <img src="images/gallery/photo-6.jpg" alt="Kabbik Campaign"
+        onerror="this.parentElement.style.minHeight='220px'; this.style.display='none'; this.parentElement.innerHTML+='<div style=\'display:flex;align-items:center;justify-content:center;height:220px;font-family:DM Mono,monospace;font-size:10px;color:rgba(255,255,255,0.15);letter-spacing:1px;\'>photo-6.jpg</div>'"
+      />
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Kabbik · Nepal Campaign</span></div>
+    </div>
+
+    <!-- Photo 7 -->
+    <div class="gallery-item" data-category="influencers" data-caption="YouTuber Collaboration" data-src="images/gallery/photo-7.jpg">
+      <img src="images/gallery/photo-7.jpg" alt="YouTuber"
+        onerror="this.parentElement.style.minHeight='180px'; this.style.display='none'; this.parentElement.innerHTML+='<div style=\'display:flex;align-items:center;justify-content:center;height:180px;font-family:DM Mono,monospace;font-size:10px;color:rgba(255,255,255,0.15);letter-spacing:1px;\'>photo-7.jpg</div>'"
+      />
+      <div class="gallery-item-overlay"><span class="gallery-item-label">YouTuber Collab</span></div>
+    </div>
+
+    <!-- Photo 8 -->
+    <div class="gallery-item" data-category="banglalink" data-caption="Banglalink · Grameenphone Academy" data-src="images/gallery/photo-8.jpg">
+      <img src="images/gallery/photo-8.jpg" alt="GP Academy"
+        onerror="this.parentElement.style.minHeight='250px'; this.style.display='none'; this.parentElement.innerHTML+='<div style=\'display:flex;align-items:center;justify-content:center;height:250px;font-family:DM Mono,monospace;font-size:10px;color:rgba(255,255,255,0.15);letter-spacing:1px;\'>photo-8.jpg</div>'"
+      />
+      <div class="gallery-item-overlay"><span class="gallery-item-label">GP Academy Event</span></div>
+    </div>
+
+    <!-- Photo 9 -->
+    <div class="gallery-item" data-category="campaigns" data-caption="RYZE · Campaign Activation" data-src="images/gallery/photo-9.jpg">
+      <img src="images/gallery/photo-9.jpg" alt="RYZE Campaign"
+        onerror="this.parentElement.style.minHeight='200px'; this.style.display='none'; this.parentElement.innerHTML+='<div style=\'display:flex;align-items:center;justify-content:center;height:200px;font-family:DM Mono,monospace;font-size:10px;color:rgba(255,255,255,0.15);letter-spacing:1px;\'>photo-9.jpg</div>'"
+      />
+      <div class="gallery-item-overlay"><span class="gallery-item-label">RYZE · Activation</span></div>
+    </div>
+
+    <!-- Photo 10 -->
+    <div class="gallery-item" data-category="competitions" data-caption="Business Case Competition" data-src="images/gallery/photo-10.jpg">
+      <img src="images/gallery/photo-10.jpg" alt="Competition"
+        onerror="this.parentElement.style.minHeight='230px'; this.style.display='none'; this.parentElement.innerHTML+='<div style=\'display:flex;align-items:center;justify-content:center;height:230px;font-family:DM Mono,monospace;font-size:10px;color:rgba(255,255,255,0.15);letter-spacing:1px;\'>photo-10.jpg</div>'"
+      />
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Competition · 2025</span></div>
+    </div>
+
+    <!-- Photo 11 -->
+    <div class="gallery-item" data-category="influencers" data-caption="Creator Collaboration" data-src="images/gallery/photo-11.jpg">
+      <img src="images/gallery/photo-11.jpg" alt="Creator"
+        onerror="this.parentElement.style.minHeight='200px'; this.style.display='none'; this.parentElement.innerHTML+='<div style=\'display:flex;align-items:center;justify-content:center;height:200px;font-family:DM Mono,monospace;font-size:10px;color:rgba(255,255,255,0.15);letter-spacing:1px;\'>photo-11.jpg</div>'"
+      />
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Creator Collab</span></div>
+    </div>
+
+    <!-- Photo 12 -->
+    <div class="gallery-item" data-category="campaigns" data-caption="Campaign Activation Event" data-src="images/gallery/photo-12.jpg">
+      <img src="images/gallery/photo-12.jpg" alt="Campaign Event"
+        onerror="this.parentElement.style.minHeight='260px'; this.style.display='none'; this.parentElement.innerHTML+='<div style=\'display:flex;align-items:center;justify-content:center;height:260px;font-family:DM Mono,monospace;font-size:10px;color:rgba(255,255,255,0.15);letter-spacing:1px;\'>photo-12.jpg</div>'"
+      />
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Campaign Activation</span></div>
+    </div>
+
+    <!-- Photo 13 -->
+    <div class="gallery-item" data-category="banglalink" data-caption="Banglalink · Team Event" data-src="images/gallery/photo-13.jpg">
+      <img src="images/gallery/photo-13.jpg" alt="Banglalink Team"
+        onerror="this.parentElement.style.minHeight='210px'; this.style.display='none'; this.parentElement.innerHTML+='<div style=\'display:flex;align-items:center;justify-content:center;height:210px;font-family:DM Mono,monospace;font-size:10px;color:rgba(255,255,255,0.15);letter-spacing:1px;\'>photo-13.jpg</div>'"
+      />
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Banglalink · Team</span></div>
+    </div>
+
+    <!-- Photo 14 -->
+    <div class="gallery-item" data-category="competitions" data-caption="Hult Prize · Army IBA" data-src="images/gallery/photo-14.jpg">
+      <img src="images/gallery/photo-14.jpg" alt="Hult Prize"
+        onerror="this.parentElement.style.minHeight='190px'; this.style.display='none'; this.parentElement.innerHTML+='<div style=\'display:flex;align-items:center;justify-content:center;height:190px;font-family:DM Mono,monospace;font-size:10px;color:rgba(255,255,255,0.15);letter-spacing:1px;\'>photo-14.jpg</div>'"
+      />
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Hult Prize · Champion</span></div>
+    </div>
+
+    <!-- Photo 15 -->
+    <div class="gallery-item" data-category="influencers" data-caption="Influencer Network · Shoot" data-src="images/gallery/photo-15.jpg">
+      <img src="images/gallery/photo-15.jpg" alt="Influencer Shoot"
+        onerror="this.parentElement.style.minHeight='240px'; this.style.display='none'; this.parentElement.innerHTML+='<div style=\'display:flex;align-items:center;justify-content:center;height:240px;font-family:DM Mono,monospace;font-size:10px;color:rgba(255,255,255,0.15);letter-spacing:1px;\'>photo-15.jpg</div>'"
+      />
+      <div class="gallery-item-overlay"><span class="gallery-item-label">Influencer Network</span></div>
+    </div>
+
+  </div>
+  <!-- To add more photos: duplicate a .gallery-item block above and change the src, data-caption, and data-category -->
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose">&#x2715;</button>
+  <button class="lightbox-nav lightbox-prev" id="lightboxPrev">&#8592;</button>
+  <img class="lightbox-img" id="lightboxImg" src="" alt=""/>
+  <button class="lightbox-nav lightbox-next" id="lightboxNext">&#8594;</button>
+  <div class="lightbox-caption" id="lightboxCaption"></div>
+</div>
+
+<!-- PRESS -->
+<section id="press">
+  <div class="section-header reveal">
+    <span class="section-num">07</span>
+    <h2 class="section-title">Press &amp; Media</h2>
+    <div class="section-line"></div>
+  </div>
+  <p style="color:var(--muted); font-size:14px; margin-bottom:56px; max-width:600px; line-height:1.8;">
+    News features, interviews, and media coverage. Click any card to read the full article.
+  </p>
+
+  <div class="press-grid">
+
+    <!--
+      HOW TO ADD YOUR PRESS ARTICLES:
+      1. Copy one of the press-card blocks below
+      2. Replace href="YOUR-ARTICLE-LINK-HERE" with the actual URL of the article
+      3. Update the outlet name, date, title, and excerpt text
+      4. Save — done. No other changes needed.
+    -->
+
+    <!-- Article 1 — PRAN-RFL Presents Brandstorm -->
+    <a href="https://www.pranfoods.net/media/event/khulna-university-business-club-unveils-brandstorm-with-tk1-lakh-prize-pool" target="_blank" rel="noopener" class="press-card reveal">
+      <div class="press-outlet">
+        <span class=“Pran Foods”>The Business Standard</span>
+        <span style="width:4px;height:4px;border-radius:50%;background:var(--border);display:inline-block;"></span>
+        <span class=“27th March”>2025</span>
+      </div>
+      <div class=“First-ever BRANDSTORM sees fierce competition, Indigo takes the title>Article headline goes here — paste the actual title of the article that featured you</div>
+      <div class=“Esteemed panel of judges, a national branding competition held at Khulna university, Team Chasm secures the first runner up position>A short 1–2 sentence description of what the article was about and how you were featured in it.</div>
+      <span class="press-read">Read Article <span class="press-arrow">→</span></span>
+    </a>
+
+    <!-- Article 2 -->
+    <a href="https://www.tbsnews.net/economy/corporates/niter-career-club-hosts-sparktank24-grand-finale-presented-dhaka-bank-1001656" target="_blank" rel="noopener" class="press-card reveal">
+      <div class="press-outlet">
+        <span class=“The Business Standard”>The Business Standard</span>
+        <span style="width:4px;height:4px;border-radius:50%;background:var(--border);display:inline-block;"></span>
+        <span class="press-date">2025</span>
+      </div>
+      <div class="press-title">Paste your second article headline here</div>
+      <div class="press-excerpt">Short description of the article and your involvement or mention in it.</div>
+      <span class="press-read">Read Article <span class="press-arrow">→</span></span>
+    </a>
+
+    <!-- Article 3 -->
+    <a href="https://www.jaijaidin.news/details/8249/armi-aibie-bielsi-er-ayojne-ant-biswbidzalz-marketing-strzateji-prtizogita?fbclid=IwY2xjawRcNSZleHRuA2FlbQIxMABicmlkETE3UWVJaFdGSmpsR2VhTnQxc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHgCED6NRv1AVmItpTtKyETNy3sCsxcY5A678dhcNOZ8b3jscDF4toPB0gg1F_aem_Yj2taHyaSPzKRd8ZwIZwWA" target="_blank" rel="noopener" class="press-card reveal">
+      <div class="press-outlet">
+        <span class=“The Daily Jaijaidin”>Channel i Online</span>
+        <span style="width:4px;height:4px;border-radius:50%;background:var(--border);display:inline-block;"></span>
+        <span class="press-date">2024</span>
+      </div>
+      <div class=“Army IBA Business and Leadership Club hosts Inter University Business Case Competition”>Paste your third article headline here</div>
+      <div class="press-excerpt">Short description of the article and your involvement or mention in it.</div>
+      <span class="press-read">Read Article <span class="press-arrow">→</span></span>
+    </a>
+
+    <!-- To add more articles: copy any press-card block above, paste it here, update the details -->
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-bg"></div>
+  <div class="contact-inner">
+    <div class="reveal">
+      <h2 class="contact-title">Let's Build<br/><em>Something</em><br/>Great</h2>
+      <p class="contact-sub">
+        Open to collaborations, brand partnerships, growth strategy roles, and meaningful projects. Reach out and let's make it happen.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:zayedkh152@gmail.com" class="contact-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+          zayedkh152@gmail.com
+        </a>
+        <a href="tel:+8801771696219" class="contact-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 11.9a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.06 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16l.92.92z"/></svg>
+          +880 1771 696 219
+        </a>
+        <a href="https://www.linkedin.com/in/zayed-khan-076iba/" target="_blank" rel="noopener" class="contact-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 Zayed Hasan Khan</span>
+  <span>Dhaka, Bangladesh</span>
+  <span style="color:var(--accent);">Marketing · Growth · Strategy</span>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // Nav scroll effect
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.style.padding = window.scrollY > 50 ? '14px 60px' : '20px 60px';
+  });
+
+  // Gallery filter
+  const filterBtns = document.querySelectorAll('.gallery-filter-btn');
+  const galleryItems = document.querySelectorAll('.gallery-item');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      galleryItems.forEach(item => {
+        const show = filter === 'all' || item.dataset.category === filter;
+        item.style.display = show ? 'block' : 'none';
+      });
+    });
+  });
+
+  // Lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  let currentIndex = 0;
+  let visibleItems = [];
+
+  function openLightbox(index) {
+    visibleItems = [...document.querySelectorAll('.gallery-item')].filter(i => i.style.display !== 'none');
+    currentIndex = index;
+    const item = visibleItems[currentIndex];
+    lightboxImg.src = item.dataset.src;
+    lightboxCaption.textContent = item.dataset.caption;
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  galleryItems.forEach((item, i) => {
+    item.addEventListener('click', () => {
+      visibleItems = [...document.querySelectorAll('.gallery-item')].filter(el => el.style.display !== 'none');
+      const visIndex = visibleItems.indexOf(item);
+      openLightbox(visIndex);
+    });
+  });
+
+  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  document.getElementById('lightboxPrev').addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + visibleItems.length) % visibleItems.length;
+    lightboxImg.src = visibleItems[currentIndex].dataset.src;
+    lightboxCaption.textContent = visibleItems[currentIndex].dataset.caption;
+  });
+  document.getElementById('lightboxNext').addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % visibleItems.length;
+    lightboxImg.src = visibleItems[currentIndex].dataset.src;
+    lightboxCaption.textContent = visibleItems[currentIndex].dataset.caption;
+  });
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', e => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') document.getElementById('lightboxPrev').click();
+    if (e.key === 'ArrowRight') document.getElementById('lightboxNext').click();
+  });
+</script>
+</body>
+</html>
